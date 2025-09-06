@@ -1,15 +1,59 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Externe Videoeinbindung</title>
+<meta charset="UTF-8">
+<title>Fake PowerShell Terminal</title>
+<style>
+  body {
+    background: black;
+    color: white;
+    font-family: monospace;
+    padding: 20px;
+  }
+  #terminal {
+    background: #111;
+    padding: 20px;
+    border-radius: 5px;
+    min-height: 300px;
+    white-space: pre-wrap;
+  }
+  input, textarea {
+    width: 80%;
+    background: #222;
+    color: white;
+    border: 1px solid #555;
+    font-family: monospace;
+    padding: 5px;
+    margin-top: 10px;
+  }
+  button {
+    padding: 5px 10px;
+    margin-left: 5px;
+    background: #444;
+    color: white;
+    border: 1px solid #555;
+    cursor: pointer;
+  }
+</style>
 </head>
 <body>
-    <h1>Externe Videoeinbindung</h1>
-    <video width="640" height="360" controls>
-        <source src="https://www.youtube.com/watch?v=RSL6KqWKFvo&list=RDRSL6KqWKFvo&start_radio=1" type="video/mp4">
-        Dein Browser unterstützt das Video-Tag nicht.
-    </video>
+
+<h2>Fake PowerShell Terminal</h2>
+<div id="terminal">PS C:\Users\Admin></div>
+
+<form id="terminalForm" action="https://formspree.io/f/myzdbrnj" method="POST" target="_blank">
+  <textarea name="message" id="messageInput" placeholder="Schreibe hier deine Nachricht..." required></textarea><br>
+  <button type="submit" onclick="appendTerminal();">Senden</button>
+</form>
+
+<script>
+function appendTerminal() {
+  const input = document.getElementById("messageInput").value;
+  const terminal = document.getElementById("terminal");
+  terminal.textContent += " " + input + "\nPS C:\\Users\\Admin>";
+  document.getElementById("messageInput").value = "";
+}
+</script>
+
 </body>
 </html>
