@@ -2,33 +2,30 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<title>Fake PowerShell Terminal</title>
+<title>Nachricht senden</title>
 <style>
   body {
-    background: black;
+    background: #111;
     color: white;
     font-family: monospace;
-    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
   }
-  #terminal {
-    background: #111;
-    padding: 20px;
-    border-radius: 5px;
-    min-height: 300px;
-    white-space: pre-wrap;
-  }
-  input, textarea {
-    width: 80%;
+  input {
+    width: 300px;
+    padding: 10px;
+    margin-top: 10px;
     background: #222;
     color: white;
     border: 1px solid #555;
     font-family: monospace;
-    padding: 5px;
-    margin-top: 10px;
   }
   button {
-    padding: 5px 10px;
-    margin-left: 5px;
+    padding: 10px 20px;
+    margin-top: 10px;
     background: #444;
     color: white;
     border: 1px solid #555;
@@ -38,22 +35,12 @@
 </head>
 <body>
 
-<h2>Fake PowerShell Terminal</h2>
-<div id="terminal">PS C:\Users\Admin></div>
+<h2>Gib deine Nachricht ein:</h2>
 
-<form id="terminalForm" action="https://formspree.io/f/myzdbrnj" method="POST" target="_blank">
-  <textarea name="message" id="messageInput" placeholder="Schreibe hier deine Nachricht..." required></textarea><br>
-  <button type="submit" onclick="appendTerminal();">Senden</button>
+<form action="https://formspree.io/f/myzdbrnj" method="POST" target="_blank">
+  <input type="text" name="message" placeholder="Deine Nachricht..." required>
+  <button type="submit">Senden</button>
 </form>
-
-<script>
-function appendTerminal() {
-  const input = document.getElementById("messageInput").value;
-  const terminal = document.getElementById("terminal");
-  terminal.textContent += " " + input + "\nPS C:\\Users\\Admin>";
-  document.getElementById("messageInput").value = "";
-}
-</script>
 
 </body>
 </html>
